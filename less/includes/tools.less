@@ -1,0 +1,40 @@
+@webkit: -webkit-;
+@moz: -moz-;
+@ms: -ms-;
+
+.prefix(-moz-; @property; @value) {
+    -moz-@{property}: @value;
+}
+.prefix(-webkit-; @property; @value) {
+    -webkit-@{property}: @value;
+}
+.prefix(-ms-; @property; @value) {
+    -ms-@{property}: @value;
+}
+
+.prefixer(@property; @value) {
+    .prefix(@webkit; @property; @value);
+    .prefix(@moz; @property; @value);
+    @{property}: @value;
+}
+
+.box-sizing(@box) {
+    .prefixer(box-sizing; @box);
+}
+
+.border-radius(@size) {
+    .prefixer(border-radius; @size);
+}
+
+.outer-container(@local-max-width: @max-width) {
+    .box-sizing(border-box);
+    max-width: @local-max-width;
+    margin: 0 auto;
+}
+
+.stretch() {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
